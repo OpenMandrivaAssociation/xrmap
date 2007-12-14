@@ -34,7 +34,7 @@ search of coordinates.
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
-perl -pi -e "s,/usr/X11R6/lib ,%{_prefix}/X11R6/%{_lib} ," earthview/Makefile
+perl -pi -e "s,/usr/X11R6/lib ,%{_libdir} ," earthview/Makefile
 
 %build
 xmkmf
@@ -44,9 +44,9 @@ xmkmf
 make install DESTDIR=$RPM_BUILD_ROOT%{_prefix}
 make install.man DESTDIR=$RPM_BUILD_ROOT%{_prefix}
 
-if [ -f $RPM_BUILD_ROOT/usr/usr/X11R6/lib/X11/doc/html/xrmap.1.html ]; then
+if [ -f $RPM_BUILD_ROOT/usr%_libdir/X11/doc/html/xrmap.1.html ]; then
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/doc/html/
-mv $RPM_BUILD_ROOT%{_prefix}/usr/X11R6/lib/X11/doc/html/xrmap.1.html $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/doc/html/xrmap.1.html
+mv $RPM_BUILD_ROOT%{_prefix}%_libdir/X11/doc/html/xrmap.1.html $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/doc/html/xrmap.1.html
 rm -rf $RPM_BUILD_ROOT%{_prefix}/usr/
 fi
 
@@ -110,7 +110,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/X11R6/bin/xrmap
 %{_prefix}/X11R6/man/man1/xrmap.1*
 %{_prefix}/X11R6/man/man1/emx.1*
-%{_prefix}/X11R6/lib/X11/doc/html/xrmap.1.html
-%{_prefix}/X11R6/lib/X11/doc/html/emx.1.html
 %_menudir/*
 
