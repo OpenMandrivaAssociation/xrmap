@@ -79,15 +79,15 @@ install tools/locutils/* -m 644 $RPM_BUILD_ROOT%_datadir/rmap/tools/locutils
 install tools/rez2else/* -m 644 $RPM_BUILD_ROOT%_datadir/rmap/tools/rez2else
 install tools/upgrade/* -m 644 $RPM_BUILD_ROOT%_datadir/rmap/tools/upgrade
 
-install -d $RPM_BUILD_ROOT%{_menudir}
-cat <<EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}): \
-        needs="X11" \
-        section="More Applications/Sciences/Geosciences" \
-        title="Xrmap" \
-        longtitle="Manipulate and create images of Earth" \
-        command="%{name}" \
-        icon="toys_section.png"
+mkdir -p %buildroot%{_datadir}/applications
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-%name.desktop
+[Desktop Entry]
+Type=Application
+Categories=Education;Science;Geology;        
+Name=Xrmap        
+Comment=Manipulate and create images of Earth        
+Exec=%{name}        
+Icon=toys_section
 EOF
 
 %post
@@ -110,5 +110,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/X11R6/bin/xrmap
 %{_prefix}/X11R6/man/man1/xrmap.1*
 %{_prefix}/X11R6/man/man1/emx.1*
-%_menudir/*
+%{_datadir}/applications/mandriva-*.desktop
 
