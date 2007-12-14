@@ -43,9 +43,6 @@ xmkmf
 # %install
 make install DESTDIR=$RPM_BUILD_ROOT%{_prefix}
 make install.man DESTDIR=$RPM_BUILD_ROOT%{_prefix}
-if [ -f $RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1/xrmap.1x ]; then
-find $RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1/xrmap.1x -type f -exec bzip2 -9f {} \;
-fi
 
 if [ -f $RPM_BUILD_ROOT/usr/usr/X11R6/lib/X11/doc/html/xrmap.1.html ]; then
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/doc/html/
