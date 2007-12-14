@@ -13,7 +13,6 @@ URL: http://freshmeat.net/projects/sunclock/
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
 Buildrequires:	X11-devel
-BuildRequires:	X11
 BuildRequires:	bzip2-devel
 BuildRequires:  png-devel
 BuildRequires:  jpeg-devel
