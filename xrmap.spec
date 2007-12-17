@@ -10,7 +10,6 @@ License: GPL
 Group: Sciences/Geosciences
 Source: ftp://ftp.ac-grenoble.fr/ge/geosciences/xrmap/%{name}-%{version}.tar.bz2
 URL: http://freshmeat.net/projects/sunclock/
-BuildRoot: %{_tmppath}/%{name}-buildroot
 
 Buildrequires:	X11-devel imake
 BuildRequires:	bzip2-devel
