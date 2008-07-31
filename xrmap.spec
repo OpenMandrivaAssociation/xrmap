@@ -1,6 +1,6 @@
 %define name xrmap
 %define version 2.33
-%define release %mkrel 2
+%define release %mkrel 4
 
 Summary: A tool to manipulate and create images of Earth
 Name: %{name}
