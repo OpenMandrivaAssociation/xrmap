@@ -1,14 +1,15 @@
 %define name xrmap
 %define version 2.33
-%define release %mkrel 6
+%define release %mkrel 7
 
 Summary: A tool to manipulate and create images of Earth
 Name: %{name}
 Version: %{version}
 Release: %{release}
-License: GPL
+License: GPLv2+
 Group: Sciences/Geosciences
 Source: ftp://ftp.ac-grenoble.fr/ge/geosciences/xrmap/%{name}-%{version}.tar.bz2
+Patch0: xrmap-2.33-fix-str-fmt.patch
 URL: http://freshmeat.net/projects/sunclock/
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
@@ -34,11 +35,12 @@ search of coordinates.
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
+%patch0 -p1 -b .strfmt
 perl -pi -e "s,/usr/X11R6/lib ,%{_libdir} ," earthview/Makefile
 
 %build
 xmkmf
-%make CDEBUGFLAGS="$RPM_OPT_FLAGS" CXXDEBUGFLAGS="$RPM_OPT_FLAGS"
+make CDEBUGFLAGS="$RPM_OPT_FLAGS" CXXDEBUGFLAGS="$RPM_OPT_FLAGS"
 
 # %install
 make install DESTDIR=$RPM_BUILD_ROOT%{_prefix}
