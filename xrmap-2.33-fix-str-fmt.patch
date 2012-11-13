@@ -1,0 +1,59 @@
+diff -p -up xrmap-2.33/xrmap.c.strfmt xrmap-2.33/xrmap.c
+--- xrmap-2.33/xrmap.c.strfmt	2010-02-04 17:19:56.000000000 +0100
++++ xrmap-2.33/xrmap.c	2010-02-04 17:25:49.000000000 +0100
+@@ -6218,7 +6218,7 @@ void dump_arcs(ImageLayout *scene)
+        fpr4(fd, k);
+     }
+     if (dump_verbose) {
+-       fprintf(stderr, msg[WROTE_JPD_INDEX_TABLE]);
++       fprintf(stderr, "%s", msg[WROTE_JPD_INDEX_TABLE]);
+        fprintf(stderr, "\n");
+     }
+ 
+@@ -8915,7 +8915,7 @@ void show_datawin(ImageLayout * scene, i
+            msg[ALTITUDE_ABBREVIATED], alt);
+ 
+    if (locations[city_found]->obj == 'b') {
+-      sprintf(str[0], name);
++      sprintf(str[0], "%s", name);
+       sprintf(str[2], msg[ADMINISTRATIVE_REGION],
+                  (locations[city_found]->region[0])?
+                   locations[city_found]->region : "-");
+@@ -8924,7 +8924,7 @@ void show_datawin(ImageLayout * scene, i
+    }
+ 
+    if (locations[city_found]->obj == 'a') {
+-      sprintf(str[0], name);
++      sprintf(str[0], "%s", name);
+       sprintf(str[2], msg[AIRPORT_CODE_COUNTRY],
+          locations[city_found]->region, locations[city_found]->rank);
+       sprintf(str[3], msg[AIRPORT_RUNWAY_LENGTH], 
+@@ -8946,7 +8946,7 @@ void show_datawin(ImageLayout * scene, i
+ 
+    if (locations[city_found]->obj=='c') {
+       sprintf(country, 
+-         countries[timezones[locations[city_found]->tz]->country]->name);
++         "%s", countries[timezones[locations[city_found]->tz]->country]->name);
+       if ((ptr=index(country,','))) *ptr='\0';
+       sprintf(str[0], "%s, %s%s", name, country, adm_status);
+       sprintf(str[2], msg[ADMINISTRATIVE_REGION],
+@@ -8962,8 +8962,8 @@ void show_datawin(ImageLayout * scene, i
+          sprintf(str[3], msg[POPULATION_NUMBER], "?");
+    } else
+    if (locations[city_found]->obj=='p') {
+-      sprintf(str[0], name);
+-      sprintf(str[2], locations[city_found]->region);
++      sprintf(str[0], "%s", name);
++      sprintf(str[2], "%s", locations[city_found]->region);
+       sprintf(str[3], msg[CONTINENT_AND_WORLD_RANKS], rank1, rank2, rank3);
+    }
+ 
+@@ -10571,7 +10571,7 @@ int main(int argc, char **argv) {
+                          ft = fopen(tmpname, "w");
+                          if (ft) {
+                             if (data_text && *data_text)
+-                               fprintf(ft, data_text);
++                               fprintf(ft, "%s", data_text);
+ 			    if (i==2)
+ 			       fprintf(ft, "%s\n\n", msg[NATIONAL_ANTHEM]);
+                             fclose(ft);
