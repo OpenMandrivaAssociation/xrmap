@@ -10,7 +10,7 @@ License: GPLv2+
 Group: Sciences/Geosciences
 Source: ftp://ftp.ac-grenoble.fr/ge/geosciences/xrmap/%{name}-%{version}.tar.bz2
 Patch0: xrmap-2.33-fix-str-fmt.patch
-URL: http://freshmeat.net/projects/sunclock/
+URL: https://freshmeat.net/projects/sunclock/
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
 Buildrequires:	X11-devel imake
